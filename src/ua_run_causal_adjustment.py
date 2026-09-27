@@ -4,12 +4,6 @@
 ua_run_causal_adjustment.py — 因果调整诊断（调整阶梯）
 =======================================================
 
-来源与改动
-----------
-本文件改编自论文官方公开代码仓库 ``SIJIEJI/polycore-lipid-causal`` 的 ``src/run_causal_adjustment.py``
-（检测场景由脂质迁移为尿酸，结构与参数均有结构性改动，非照搬）。
-详见 README「来源与署名」与 docs/UA_MIGRATION_GUIDE.md。
-
 
 回答一个问题：**控制住不同混杂集合之后，汗液–血液尿酸的关联强度如何变化？**
 

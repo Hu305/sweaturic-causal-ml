@@ -4,12 +4,6 @@
 ua_make_example_data.py — 尿酸合成数据生成器（仅用于流程验证）
 ================================================================
 
-来源与改动
-----------
-本文件改编自论文官方公开代码仓库 ``SIJIEJI/polycore-lipid-causal`` 的 ``src/make_example_data.py``
-（检测场景由脂质迁移为尿酸，结构与参数均有结构性改动，非照搬）。
-详见 README「来源与署名」与 docs/UA_MIGRATION_GUIDE.md。
-
 
 **本文件生成的是合成数据，不是实验结果。**
 产物同名目录下会写出 ``*.meta.json``，标记 ``"synthetic": true``；

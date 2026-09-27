@@ -4,12 +4,6 @@
 ua_reproduce_figure5hi.py — 模型对比与结果可视化（Figure 5h-i 风格）
 =====================================================================
 
-来源与改动
-----------
-本文件改编自论文官方公开代码仓库 ``SIJIEJI/polycore-lipid-causal`` 的 ``src/reproduce_figure5hi.py``
-（检测场景由脂质迁移为尿酸，结构与参数均有结构性改动，非照搬）。
-详见 README「来源与署名」与 docs/UA_MIGRATION_GUIDE.md。
-
 
 产出六类证据：
 

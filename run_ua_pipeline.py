@@ -4,11 +4,6 @@
 run_ua_pipeline.py — 尿酸因果 ML 管线一键运行入口
 ===================================================
 
-来源与改动
-----------
-本文件为本仓库新增，上游仓库 ``SIJIEJI/polycore-lipid-causal`` 无对应模块。
-详见 README「来源与署名」。
-
 
 四个步骤串行执行：
 
@@ -31,10 +26,10 @@ run_ua_pipeline.py — 尿酸因果 ML 管线一键运行入口
     # 额外写出带 sha256 校验值的产物清单
     python run_ua_pipeline.py --manifest
 
-相对原版的改动
+设计要点
 --------------
 - ``subprocess.run([sys.executable, ...])`` 直接以参数列表调用，
-  **不再走 shell**（原版 ``shell=True`` 拼字符串，路径带空格或中文就可能出错，
+  **不走 shell**（早期草稿用 ``shell=True`` 拼字符串，路径带空格或中文就可能出错，
   也是命令注入的常见来源）；
 - 所有路径相对 ``REPO_ROOT`` 解析，脚本在任何工作目录下调用都成立；
 - 新增 ``--steps`` / ``--seed`` / ``--marker-mode`` / ``--manifest``；

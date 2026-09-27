@@ -1,10 +1,10 @@
 # SweatUric-AI · 汗液尿酸因果机器学习分析管线
 
-**Causal-assumption-guided ML pipeline for non-invasive sweat uric-acid (UA) monitoring — adapted from the PolyCORE lipid framework.**
+**Causal-assumption-guided ML pipeline for non-invasive sweat uric-acid (UA) monitoring.**
 
-本仓库是一个**方法论移植 + 流程验证**阶段的代码库，不是一个已完成的检测系统。它做的事情很窄、很明确：
-把 *Nature Sensors* 论文公开的「因果假设优先」建模范式（DAG → 后门调整集 → 特征集 → 分组交叉验证）
-从**脂质**场景迁移到**尿酸**场景，并让整条链路在一台干净机器上**可一键复现、可机器校验**。
+本仓库是一个**流程验证**阶段的代码库，不是一个已完成的检测系统。它做的事情很窄、很明确：
+用「因果假设优先」的建模范式（DAG → 后门调整集 → 特征集 → 分组交叉验证）
+对汗液尿酸无创监测场景做统计建模，并让整条链路在一台干净机器上**可一键复现、可机器校验**。
 
 > ## ⚠️ 三条必须先读到的声明
 >
@@ -18,42 +18,7 @@
 
 ---
 
-## 1. 来源与署名（重要）
-
-本仓库的四个核心脚本**改编**自下述论文的官方公开代码仓库，不是从零另起炉灶；
-其余文件（`ua_data_utils.py`、`run_ua_pipeline.py`、尿酸专用规格与测试）为本仓库新增。
-
-| 本仓库文件 | 上游对应文件 | 关系 |
-|---|---|---|
-| `src/ua_causal_specification.py` | `src/causal_specification.py` | 改编：DAG 由脂质 3 任务改为 UA 单任务，新增肾功能块与 pH 效应修饰 |
-| `src/ua_run_causal_adjustment.py` | `src/run_causal_adjustment.py` | 改编：调整为 8 级阶梯 S0–S7，区分 confounder / precision / modifier / joint |
-| `src/ua_reproduce_figure5hi.py` | `src/reproduce_figure5hi.py` | 改编：模型表由规格文件读取，新增簇 bootstrap、2×2 消融、拆分器敏感性、肾功能分层 |
-| `src/ua_make_example_data.py` | `src/make_example_data.py` | 重写：CKD-EPI 2021 eGFR、LOD 截尾、pH 响应项、两档自检 |
-| `src/ua_data_utils.py` | — | 新增：dtype/编码/切分/泄漏守卫的单一事实源 |
-| `run_ua_pipeline.py` | — | 新增：一键运行 + 24 项机器校验 + sha256 产物清单 |
-
-**上游出处**
-
-> Lasalde-Ramírez J. A., Won C., Ji S., et al.
-> *Non-invasive continuous lipid profiling via cofactor-refreshing cascading enzymatic reactions
-> and causal machine learning.* **Nature Sensors**, vol. 1, Sep. 2026, pp. 811–823.
-> DOI: [10.1038/s44460-026-00117-0](https://doi.org/10.1038/s44460-026-00117-0)
-> 官方代码仓库：<https://github.com/SIJIEJI/polycore-lipid-causal>（本地副本对应提交 `6277a9b`，2026-07-14）
-
-**移植的不是化学，是因果推断方法论。** 原论文的化学创新是「辅因子刷新级联酶反应」——
-用聚吡咯/ATP 微结构持续为甘油三酯的三酶级联（LIP → GK → G3PO）补给被消耗的 ATP。
-**尿酸检测是单步酶促反应，不需要任何辅因子**，所以那条化学路线对本项目没有意义；
-可迁移的是它「先把因果假设写成图，再据此确定输入变量与评估协议」的建模范式。
-逐条改动与理由见 [`docs/UA_MIGRATION_GUIDE.md`](docs/UA_MIGRATION_GUIDE.md)。
-
-**许可状态说明**：截至本仓库发布时，上游 `polycore-lipid-causal` 未声明 LICENSE 文件
-（按默认著作权规则为「保留所有权利」）。本仓库以上述署名方式引用并说明派生关系，
-发布仅用于学术交流与竞赛材料提交。**如需在任何其他用途下使用本仓库或其派生代码，
-请先联系论文作者取得授权**；我们会在上游明确许可后同步补上 LICENSE。
-
----
-
-## 2. 目录结构
+## 1. 目录结构
 
 ```text
 .
@@ -80,13 +45,13 @@
     └── ua_figure5hi/                    主结果、折指标、Bootstrap CI、消融、敏感性、分层
 ```
 
-`results/` 与上游做法不同（上游把 `results/` 排除在版本控制外）。这里**故意提交**，
+`results/` 这里**故意提交**，
 原因是技术报告正文直接引用这些图与表；把它们放进仓库，报告里的每个数字都能被点到文件、
 并被 `MANIFEST.json` 的 sha256 校验到。重新运行会原地覆盖，不会产生分叉副本。
 
 ---
 
-## 3. 安装与运行
+## 2. 安装与运行
 
 需要 Python ≥ 3.10（本项目在 3.11 上验证）。
 
@@ -138,7 +103,7 @@ CSV 数值差异在 1e-16 量级却 sha256 不一致，无法做产物校验。�
 
 ---
 
-## 4. 因果建模思路（读代码的顺序）
+## 3. 因果建模思路（读代码的顺序）
 
 1. **先写图，再写模型。** `ua_causal_specification.py` 里 DAG 是 15 节点 / 22 条边的显式列表，
    `validate_dag()` 用 Kahn 拓扑排序强制无环，任何环路直接抛错。
@@ -159,7 +124,7 @@ CSV 数值差异在 1e-16 量级却 sha256 不一致，无法做产物校验。�
 
 ---
 
-## 5. 当前运行结果（合成数据，只说明代码行为）
+## 4. 当前运行结果（合成数据，只说明代码行为）
 
 `results/` 中的数字来自随机种子 42，重跑可字节级复现。**它们不是性能指标。**
 
@@ -181,7 +146,7 @@ CSV 数值差异在 1e-16 量级却 sha256 不一致，无法做产物校验。�
 
 ---
 
-## 6. 证据分级图例
+## 5. 证据分级图例
 
 技术报告与本仓库的产物按同一套标记：
 
@@ -189,7 +154,7 @@ CSV 数值差异在 1e-16 量级却 sha256 不一致，无法做产物校验。�
 - **【进行中】** 已在做但未闭合（如真实数据采集方案，等待伦理批件）。
 - **【计划】** 设计概念，尚无实物（如 PCB 采集板、临床验证）。
 
-## 7. 下一步（与报告第 12 章对应，均为【计划】）
+## 6. 下一步（与报告第 12 章对应，均为【计划】）
 
 1. 取伦理批件 → 按 `data/ua_merged_data_schema.csv` 的契约采集配对汗液/血尿酸数据；
    代码侧已就绪，真实数据放入 `data/ua_merged_data.csv` 即可复用全部分析（该文件已被 `.gitignore` 禁止入库）。
@@ -199,4 +164,4 @@ CSV 数值差异在 1e-16 量级却 sha256 不一致，无法做产物校验。�
 
 ---
 
-如果本仓库对你有帮助，请同时引用上游论文与官方代码仓库（见第 1 节与 `CITATION.cff`）。
+如果本仓库对你有帮助，请引用本仓库。
