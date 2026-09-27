@@ -1,0 +1,23 @@
+﻿parent,child,category,rationale
+eGFR,blood_UA,renal,血尿酸约 70% 经肾脏排泄，eGFR 是血尿酸最强的单一决定因素
+creatinine,blood_UA,renal,肌酐与尿酸同属肾小管排泄底物，肌酐升高常伴随尿酸潴留
+BUN,blood_UA,renal,尿素氮反映整体肾排泄能力，与血尿酸水平同向变化
+age,eGFR,renal,肾小球滤过率随年龄增长而下降（肾功能路径的时间上游）
+sex,eGFR,renal,CKD-EPI 公式含性别系数：同龄女性 eGFR 略低于男性
+BMI,blood_UA,metabolic,肥胖经胰岛素抵抗促进肾尿酸重吸收，同时增加尿酸生成
+BMI,sweat_UA,metabolic,BMI 影响皮肤屏障功能与汗腺分泌成分
+fat_mass,BMI,body_composition,体脂量是 BMI 的组成分量（体成分分解路径）
+muscle_mass,BMI,body_composition,肌肉量是 BMI 的组成分量（体成分分解路径）
+BMR,blood_UA,metabolic,基础代谢率反映细胞周转与嘌呤代谢通量
+blood_glucose,blood_UA,metabolic,代谢综合征聚集性：胰岛素抵抗同时推高血糖与血尿酸
+sex,blood_UA,demographic,男性血尿酸基线显著高于女性（雌激素促进尿酸排泄）
+sex,sweat_UA,demographic,性别影响汗腺密度与局部汗液成分
+age,blood_UA,demographic,血尿酸水平随年龄上升
+age,sweat_UA,demographic,年龄影响皮肤通透性与汗腺功能
+sweat_rate,sweat_UA,sweat_dynamics,出汗率越高汗液被稀释越明显，汗液尿酸浓度随之下降
+sweat_pH,sweat_UA,sweat_chemistry,尿酸为弱酸（pKa₁≈5.4、pKa₂≈9.8），汗液 pH 改变其离子化比例
+sweat_pH,sweat_UA_sensor,measurement,pH 改变电极表面质子化状态，从而改变电化学响应增益
+blood_UA,sweat_UA,causal_path,核心因果通路：血尿酸经皮肤被动扩散/主动分泌进入汗液
+BMI,sweat_rate,sweat_dynamics,补齐漏洞①：体脂与体表面积影响单位时间出汗量，原版 sweat_rate 无任何父节点，无法对其做后门调整
+sex,sweat_rate,sweat_dynamics,补齐漏洞①：性别影响汗腺密度与出汗阈值
+sweat_UA,sweat_UA_sensor,measurement,补齐漏洞②测量边：电极响应是汗液尿酸浓度的观测，原版 sweat_UA_sensor 是悬空节点，本条使部署模式下落为可用输入

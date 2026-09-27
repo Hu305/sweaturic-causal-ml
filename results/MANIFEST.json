@@ -1,0 +1,147 @@
+{
+  "generated_by": "run_ua_pipeline.py",
+  "note": "sha256 用于校验报告附录引用的产物未被改动",
+  "n_files": 28,
+  "files": [
+    {
+      "path": "data/ua_example_merged_data.csv",
+      "bytes": 14661,
+      "sha256": "2970b1ec70aee0a7fd109c315d38540f8d3f21680041fdc2d6c0c6a6627809cb"
+    },
+    {
+      "path": "data/ua_example_merged_data.meta.json",
+      "bytes": 334,
+      "sha256": "f1cb4a527fadb22edb9d084f79714dffd2da657f8d4138b0964b29dd6351e8b4"
+    },
+    {
+      "path": "results/ua_causal_adjustment/adjustment_ladder.png",
+      "bytes": 277983,
+      "sha256": "119fd74d9c90bae0e8fd32d00d1d6fbaaf9989a409c889d96aeae1e5df65eadb"
+    },
+    {
+      "path": "results/ua_causal_adjustment/causal_adjustment_summary.csv",
+      "bytes": 2848,
+      "sha256": "d772e293216b48f61eedd656ae9cfada94e8c55fe9ed5ca96d36bbfee3709c92"
+    },
+    {
+      "path": "results/ua_causal_specification/adjustment_set_derivation.csv",
+      "bytes": 3278,
+      "sha256": "50b52b653ef4110571299c34b684f493969480a46dca9f7d51423912b15e6750"
+    },
+    {
+      "path": "results/ua_causal_specification/causal_dag.png",
+      "bytes": 293927,
+      "sha256": "e10141ad04e5312ae230649c99634087df85e32464c53cd17fa82ae821159c15"
+    },
+    {
+      "path": "results/ua_causal_specification/causal_dag_edges.csv",
+      "bytes": 2228,
+      "sha256": "7861f2954ce45ab7741d9ee2f8ae13022559e613c1963890c4d893e61fbfbda6"
+    },
+    {
+      "path": "results/ua_causal_specification/causal_feature_sets.csv",
+      "bytes": 1726,
+      "sha256": "e9dc645e56f9d6f2dee27c7a1cee26eeca89b213a40b684ca1a1e839897c5ac4"
+    },
+    {
+      "path": "results/ua_causal_specification/dag_validation.csv",
+      "bytes": 805,
+      "sha256": "ef3985ff4c011365d0ac5871a3802ec6a6372f5af56a63681ace99ab0e1f5046"
+    },
+    {
+      "path": "results/ua_causal_specification/model_definitions.csv",
+      "bytes": 1142,
+      "sha256": "8ba709badd074854a229208f5fbf8621852f33a8d2b6eabf2c1e4f5c22344a0b"
+    },
+    {
+      "path": "results/ua_figure5hi/ablation_estimator_vs_featureset.csv",
+      "bytes": 666,
+      "sha256": "253b983fa2a68b9d8c28e74faa0bf8a24020ed0130d0ca926d35833898c5d69e"
+    },
+    {
+      "path": "results/ua_figure5hi/ablation_heatmap.png",
+      "bytes": 157767,
+      "sha256": "0a7ed957030b984b701eed822810802844a0b4586e65c6f16529d0bedef00ac8"
+    },
+    {
+      "path": "results/ua_figure5hi/ablation_marginal_effects.csv",
+      "bytes": 516,
+      "sha256": "320c82b4920e147dda18a45898c8be45abfbc3006aa4fd1c38691c83a34ba8d7"
+    },
+    {
+      "path": "results/ua_figure5hi/bootstrap_ci.csv",
+      "bytes": 1219,
+      "sha256": "59b4d12bc8bfb75ec63ea969a4d40c97156e4fb302336410a214e163014cb2a3"
+    },
+    {
+      "path": "results/ua_figure5hi/figure5hi.png",
+      "bytes": 312569,
+      "sha256": "7cc63bc4edaefcd197aa7fd801f2d0f216fc416e32700cd84b7c840ab88f2172"
+    },
+    {
+      "path": "results/ua_figure5hi/figure5hi_fold_metrics.csv",
+      "bytes": 3362,
+      "sha256": "5dd998ff7196233f8ad7c380225d4d718cf727cc578438d77565e6210bb57561"
+    },
+    {
+      "path": "results/ua_figure5hi/figure5hi_oof_predictions.csv",
+      "bytes": 45996,
+      "sha256": "ba07e64b10d99f9100dc137d5a4c1ea490977fb0c85f80ee985a19bb9f1f4842"
+    },
+    {
+      "path": "results/ua_figure5hi/figure5hi_summary_metrics.csv",
+      "bytes": 2213,
+      "sha256": "17d1e4f1130a5b4105004221c9652d6b2b0d19f1b0664deb01d1099fb5dfab4d"
+    },
+    {
+      "path": "results/ua_figure5hi/individual_response_curves.png",
+      "bytes": 331305,
+      "sha256": "08b6b1e64dfaa3a651b831f981cb7fb8bc05d432c0596e819fe09da470f8f025"
+    },
+    {
+      "path": "results/ua_figure5hi/paired_delta_ci.csv",
+      "bytes": 5587,
+      "sha256": "5e35e1501e5d260c340added05f76d06142167e1478cc9f67d7871fd2445de1e"
+    },
+    {
+      "path": "results/ua_figure5hi/renal_stratified.png",
+      "bytes": 167832,
+      "sha256": "596fe7f00b0722614e8df641a7c76673192a36bedf7309194333d6ff4bb40bd5"
+    },
+    {
+      "path": "results/ua_figure5hi/renal_stratified_metrics.csv",
+      "bytes": 630,
+      "sha256": "81fdd3ce0d56b70007884569e592e0a036e145a424cbc0c798bd430d8c107c57"
+    },
+    {
+      "path": "results/ua_figure5hi/sensitivity_splitter.csv",
+      "bytes": 636,
+      "sha256": "189869666dc10d0b085174fdab8192cedbe9c1b2c7e1bc0babc434798a9d8e91"
+    },
+    {
+      "path": "src/ua_causal_specification.py",
+      "bytes": 32113,
+      "sha256": "9e80d6aefea8387358d3f07ba433d331b86c86c2eb0904c88bcce1ed954b183b"
+    },
+    {
+      "path": "src/ua_data_utils.py",
+      "bytes": 30254,
+      "sha256": "6ba138cf7e6b4a5ed66510571fed91a1ec6950a92aea644a9bff7271e1086802"
+    },
+    {
+      "path": "src/ua_make_example_data.py",
+      "bytes": 18113,
+      "sha256": "627449a8dff981c7f80c278f1bf5522da485b297f38799d63db0b5f1991222b4"
+    },
+    {
+      "path": "src/ua_reproduce_figure5hi.py",
+      "bytes": 33555,
+      "sha256": "24f3f10d0ac026b9e5966b5cc2a4559f4af6a44f671038bb5fc117ce2ec93fb8"
+    },
+    {
+      "path": "src/ua_run_causal_adjustment.py",
+      "bytes": 15469,
+      "sha256": "de45e8ef1294f7250a5ceab0f8a4646f170f28c32395b01d01a8f5df1daf6a90"
+    }
+  ]
+}

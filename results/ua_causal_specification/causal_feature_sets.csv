@@ -1,0 +1,8 @@
+﻿task,feature_set,role,tier,n_columns,columns,rationale
+UA,marker_only,baseline_marker_only,对比基线,1,sweat_UA,只用一个汗液标记物，代表「原始相关性」的下限；对应论文的 Simple
+UA,marker_plus_rate,baseline_marker_plus_rate,对比基线,2,sweat_UA;sweat_rate,加入出汗率以吸收稀释效应，对应论文 dual-variable 建模的精神
+UA,full_model,fully_adjusted,全特征对照,10,sweat_UA;sweat_rate;sweat_pH;BMI;sex;age;eGFR;fat_mass;muscle_mass;BMR,全部 10 个可用特征，靠 L1/L2 正则化抑制共线；作为「多特征回归」上限对照，用于把「因果增益」与「多特征增益」分离
+UA,causal_guided_minimal,causal_minimal,Tier-1（严格后门最小集）,5,sweat_UA;sweat_rate;BMI;sex;age,"T1 的混杂 {BMI, sex, age}（由后门准则推导）∪ {出汗率}（第二处理变量）"
+UA,causal_guided_minimal_renal,causal_minimal_plus_renal,Tier-2（最小集+精度变量）,6,sweat_UA;sweat_rate;BMI;sex;age;eGFR,Tier-1 再加入组基线 eGFR。eGFR 不是混杂变量（不指向处理变量），以「入组前累积尿酸盐负荷代理」的身份纳入以提高估计精度
+UA,covariate_only_static,negative_control_static,负对照,8,BMI;sex;age;eGFR;fat_mass;muscle_mass;BMR;sweat_pH,只有静态人口学/生理协变量与 pH，**不含任何汗液动态信号**（既无 sweat_UA 也无 sweat_rate）；若该模型表现接近因果模型，说明增益只是来自协变量
+UA,covariate_plus_rate,negative_control_dynamic,负对照,9,BMI;sex;age;eGFR;fat_mass;muscle_mass;BMR;sweat_pH;sweat_rate,在静态负对照上再加出汗率：检验「增益是否只是多了一个动态生理变量」，而不是汗液尿酸标记物本身

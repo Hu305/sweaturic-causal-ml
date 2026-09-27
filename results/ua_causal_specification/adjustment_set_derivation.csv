@@ -1,0 +1,14 @@
+﻿treatment,outcome,candidate,is_direct_parent_of_treatment,directed_path_to_outcome,backdoor_open,verdict,in_tier1_minimal_set,in_tier2_minimal_plus_renal,rationale
+sweat_UA,blood_UA,BMI,True,BMI → … → blood_UA（不经过 sweat_UA）,True,confounder,True,True,同时是处理变量与结局的父节点，开通后门路径 sweat_UA←BMI→blood_UA，必须阻断
+sweat_UA,blood_UA,sex,True,sex → … → blood_UA（不经过 sweat_UA）,True,confounder,True,True,同时是处理变量与结局的父节点（另经 sex→eGFR→blood_UA 亦有通路），必须阻断
+sweat_UA,blood_UA,age,True,age → … → blood_UA（不经过 sweat_UA）,True,confounder,True,True,同时是处理变量与结局的父节点（另经 age→eGFR→blood_UA 亦有通路），必须阻断
+sweat_UA,blood_UA,sweat_rate,True,无（sweat_rate 无通路到达 blood_UA）,False,joint_treatment,True,True,是处理变量的父节点，但**没有任何通向 blood_UA 的通路**，故它不是混杂变量；本项目将其作为第二个处理变量联合建模，以显式吸收稀释效应
+sweat_UA,blood_UA,sweat_pH,True,无（sweat_pH 无通路到达 blood_UA）,False,effect_modifier,False,False,仅通向 sweat_UA 与 sweat_UA_sensor，**无通路通向 blood_UA**，故不是混杂变量；它改变的是「处理 → 信号」的映射增益，建模为效应修饰（交互项）而非调整项
+sweat_UA,blood_UA,blood_UA,True,（结局本身）,False,causal_path,False,False,它是结局本身，blood_UA→sweat_UA 就是我们要估计的因果通路，对它做调整会阻断效应（over-adjustment）
+sweat_UA,blood_UA,eGFR,False,eGFR → … → blood_UA（不经过 sweat_UA）,False,precision_variable,False,True,不是处理变量的父节点，严格后门准则下不需调整；以**入组基线值**纳入（时间上先于本研究全部 blood_UA 测量，代表入组前累积尿酸盐负荷），既不构成环又能提高估计精度
+sweat_UA,blood_UA,creatinine,False,creatinine → … → blood_UA（不经过 sweat_UA）,False,collinear_with_eGFR,False,False,eGFR 即由 creatinine+age+sex 经 CKD-EPI 公式导出，两者高度共线；eGFR 已入集，再纳入只放大方差而无新信息
+sweat_UA,blood_UA,BUN,False,BUN → … → blood_UA（不经过 sweat_UA）,False,collinear_with_eGFR,False,False,与 eGFR 同属肾功能排泄指标，信息高度重叠，理由同上
+sweat_UA,blood_UA,fat_mass,False,fat_mass → … → blood_UA（不经过 sweat_UA）,False,not_required,False,False,它是 BMI 的父节点而非后代，但经由 BMI 的路径已被 BMI 阻断，对后门准则无额外贡献；仅在 full_model 全特征对照中出现
+sweat_UA,blood_UA,muscle_mass,False,muscle_mass → … → blood_UA（不经过 sweat_UA）,False,not_required,False,False,同 fat_mass：路径已被 BMI 阻断，最小集不需要
+sweat_UA,blood_UA,BMR,False,BMR → … → blood_UA（不经过 sweat_UA）,False,not_required,False,False,它是结局的父节点而非处理变量的父节点，不阻断任何后门路径
+sweat_UA,blood_UA,blood_glucose,False,blood_glucose → … → blood_UA（不经过 sweat_UA）,False,not_required,False,False,它是结局的父节点而非处理变量的父节点，不阻断任何后门路径

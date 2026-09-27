@@ -1,0 +1,5 @@
+﻿effect,level,delta_r2,mean_delta_r2
+feature_set_gain（全特征 → 因果最小集，固定估计器）,RandomForest,0.03134126778166013,0.06188285652308467
+feature_set_gain（全特征 → 因果最小集，固定估计器）,Ridge,0.09242444526450921,0.06188285652308467
+estimator_gain（Ridge → RandomForest，固定特征集）,causal_guided_minimal,-0.09165463878855928,-0.06111305004713474
+estimator_gain（Ridge → RandomForest，固定特征集）,full_model,-0.0305714613057102,-0.06111305004713474

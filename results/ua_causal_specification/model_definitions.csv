@@ -1,0 +1,8 @@
+﻿model,feature_set_key,n_features,features,estimator,description
+Simple,marker_only,1,sweat_UA,LinearRegression(),单标记基线：原始汗液–血液相关性
+Multi,marker_plus_rate,2,sweat_UA;sweat_rate,LinearRegression(),双变量基线：标记物 + 出汗率（稀释控制）
+Ridge,full_model,10,sweat_UA;sweat_rate;sweat_pH;BMI;sex;age;eGFR;fat_mass;muscle_mass;BMR,Ridge(alpha=1.0),全特征 + L2 正则化
+Lasso,full_model,10,sweat_UA;sweat_rate;sweat_pH;BMI;sex;age;eGFR;fat_mass;muscle_mass;BMR,"Lasso(alpha=0.1, max_iter=10000)",全特征 + L1 正则化（稀疏选择）
+Causal_ML,causal_guided_minimal_renal,6,sweat_UA;sweat_rate;BMI;sex;age;eGFR,Ridge(alpha=1.0),DAG 指导的因果最小集（Tier-2）+ L2 正则化
+Negative_Control,covariate_only_static,8,BMI;sex;age;eGFR;fat_mass;muscle_mass;BMR;sweat_pH,Ridge(alpha=1.0),负对照（静态）：全部协变量 + pH，不含任何汗液动态信号
+Negative_Control_Dynamic,covariate_plus_rate,9,BMI;sex;age;eGFR;fat_mass;muscle_mass;BMR;sweat_pH;sweat_rate,Ridge(alpha=1.0),负对照（动态）：再加出汗率，检验增益是否只是多了一个动态变量

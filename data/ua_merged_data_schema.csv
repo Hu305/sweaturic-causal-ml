@@ -1,0 +1,20 @@
+column_name,data_type,column_role,unit,description,notes
+subject_id,int,ID,,受试者编号,同一受试者的多次测量必须整体分到同一交叉验证折
+stage,str,ID,,采样阶段（T0/T1/T2）,T0 静息基线 → T1 刺激后 → T2 恢复 30 min
+time_point,int,ID,min,采样时间点,0 / 40 / 70 min
+sweat_UA,float,处理变量 T1,umol/L,汗液尿酸浓度（酶法金标准）,核心标记物；低于试剂盒 LOD 8 umol/L 时按左删失处理
+sweat_UA_sensor,float,处理变量 T1 的观测,umol/L,电极原始响应,部署模式下唯一可得的标记物输入；含 pH 响应增益与仪器噪声
+sweat_UA_censored,bool,质量控制,,左删失标记,True 表示原始值低于 LOD 8 umol/L、已截断到 8
+sweat_rate,float,处理变量 T2,uL/min,出汗率,对汗液尿酸有稀释效应；不是混杂变量（无通向 blood_UA 的通路）
+sweat_pH,float,效应修饰变量,pH,汗液 pH,尿酸 pKa≈5.75；改变离子化比例与电极响应增益，但不直接决定血尿酸
+BMI,float,混杂变量,kg/m2,体质指数,同时影响汗液成分与血尿酸
+sex,int(0/1),混杂变量,,性别（F=0, M=1）,同时影响汗腺密度与尿酸基线；0/1 编码避免哑变量共线
+age,float,混杂变量,years,年龄,同时影响肾功能、皮肤通透性与尿酸水平
+eGFR,float,精度变量,mL/min/1.73m2,估算肾小球滤过率,取入组基线值（代表入组前累积尿酸盐负荷）；由 creatinine+age+sex 经 CKD-EPI 2021 导出
+creatinine,float,肾功能块,umol/L,血清肌酐,与 eGFR 高度共线，最小调整集不纳入
+BUN,float,肾功能块,mg/dL,血尿素氮,同上
+fat_mass,float,体成分,kg,体脂量,经脂肪含量测定；路径已被 BMI 阻断，最小集不纳入
+muscle_mass,float,体成分,kg,肌肉量,同上
+BMR,float,代谢,kcal/day,基础代谢率,结局的父节点而非处理变量的父节点
+blood_glucose,float,代谢,mg/dL,空腹血糖,代谢综合征聚集性协变量
+blood_UA,float,结局 Y,umol/L,血清尿酸（金标准）,临床诊断阈值：男性 >420 / 女性 >360 umol/L 为高尿酸血症

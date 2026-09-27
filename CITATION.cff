@@ -1,0 +1,46 @@
+# 若使用本仓库代码，请同时引用本仓库与上游论文/上游代码仓库（详见 README 第 1 节）。
+cff-version: 1.2.0
+message: "Please cite both this repository and the upstream paper/repository it is derived from."
+title: "SweatUric-AI：汗液尿酸无创监测的因果机器学习分析管线（尿酸场景移植版）"
+type: software
+authors:
+  - name: "SweatUric-AI team"        # 材料初评为盲审，成员姓名与单位不在仓库内披露
+date-released: 2026-09-27
+repository-code: "https://github.com/Hu305/sweaturic-causal-ml"
+version: "1.0.0"
+abstract: >
+  Causal-assumption-guided machine-learning pipeline that transfers the
+  DAG-first modelling paradigm of the PolyCORE lipid study to non-invasive
+  sweat uric-acid monitoring. Ships only with synthetic, schema-compatible
+  demo data; the reported metrics validate the code, not any device or
+  clinical performance.
+keywords:
+  - causal inference
+  - directed acyclic graph
+  - sweat uric acid
+  - GroupKFold
+  - synthetic data
+references:
+  - type: article                    # 上游论文：本仓库四个核心脚本的改编来源
+    title: "Non-invasive continuous lipid profiling via cofactor-refreshing cascading enzymatic reactions and causal machine learning"
+    authors:
+      - family-names: "Lasalde-Ramírez"
+        given-names: "José A."
+      - family-names: "Won"
+        given-names: "Chihyeong"
+      - family-names: "Ji"
+        given-names: "Sijie"
+    journal: "Nature Sensors"
+    volume: 1
+    start: 811
+    end: 823
+    date: 2026-09-01
+    doi: 10.1038/s44460-026-00117-0
+  - type: software-code              # 上游官方代码仓库
+    title: "PolyCORE lipid causal ML"
+    authors:
+      - family-names: "Ji"
+        given-names: "Sijie"
+    date-released: 2026-07-10
+    repository-code: "https://github.com/SIJIEJI/polycore-lipid-causal"
+    commit: "6277a9be38cadb7448cdaeaf2a9dd7eb95835000"

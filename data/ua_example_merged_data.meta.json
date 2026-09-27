@@ -1,0 +1,12 @@
+{
+  "synthetic": true,
+  "generator": "src/ua_make_example_data.py",
+  "seed": 42,
+  "n_subjects": 50,
+  "n_timepoints": 3,
+  "n_rows": 150,
+  "created_utc": "2026-09-27T13:21:25Z",
+  "kit_lod_umol": 8.0,
+  "blood_unit": "umol/L",
+  "caveat": "合成数据——仅用于流程验证与代码自检，不构成任何性能证据。"
+}

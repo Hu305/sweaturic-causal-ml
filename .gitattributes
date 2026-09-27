@@ -1,0 +1,17 @@
+# 统一换行符：results/MANIFEST.json 记录的是源文件与产物的 sha256，
+# 若不同操作系统检出为 CRLF/LF 不一致，校验就会假性失败。这里强制文本文件按 LF 入库与检出。
+* text=auto eol=lf
+
+*.py    text eol=lf
+*.csv   text eol=lf
+*.json  text eol=lf
+*.md    text eol=lf
+*.txt   text eol=lf
+*.cff   text eol=lf
+.gitignore text eol=lf
+.gitattributes text eol=lf
+
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.pdf   binary

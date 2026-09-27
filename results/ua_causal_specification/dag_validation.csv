@@ -1,0 +1,2 @@
+﻿n_nodes,n_edges,is_acyclic,topological_order,unresolved_nodes,node_notes
+15,22,True,BMR -> BUN -> age -> blood_glucose -> creatinine -> fat_mass -> muscle_mass -> sex -> sweat_pH -> BMI -> eGFR -> sweat_rate -> blood_UA -> sweat_UA -> sweat_UA_sensor,,BMI=体质指数; BMR=基础代谢率; BUN=血尿素氮; age=年龄; blood_UA=血清尿酸浓度（金标准结局）; blood_glucose=空腹血糖; creatinine=血清肌酐; eGFR=估算肾小球滤过率（取入组基线值，精度变量）; fat_mass=体脂量; muscle_mass=肌肉量; sex=性别; sweat_UA=汗液尿酸浓度（处理变量 T1，酶法金标准）; sweat_UA_sensor=电极原始响应（部署模式唯一可得的标记物输入）; sweat_pH=汗液 pH（效应修饰变量）; sweat_rate=出汗率（处理变量 T2，稀释因子）

@@ -1,0 +1,33 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+.env
+*.egg-info/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# ---- 编辑器 / 系统 ----
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+.idea/
+.vscode/
+
+# ---- 受限真实数据：涉及人体受试者，永不入库 ----
+# 采集到真实配对数据后，把它放在下面这个路径即可复用全部分析（README 第 7 节）。
+data/ua_merged_data.csv
+data/ua_real_data.csv
+data/raw/
+data/*.xlsx
+
+# ---- 内部工作记录：含本地绝对路径与第三方论文页码引用，不对外发布 ----
+docs/CITATION_VERIFICATION.md
+
+# ---- 临时产物 ----
+*.log
+*.tmp
+tmp/
